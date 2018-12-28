@@ -309,7 +309,7 @@ function initPeripherals()
 	mon.clear()
 	mon.setCursorPos(1,1)
 	--Monitor too small
-	local monX,monY = monitor[MonitorNumber].getSize()
+	local monX,monY = mon.getSize()
 	if monX < 71 or monY < 26 then
 		if lang == "de" then
 			mon.write("Monitor zu klein.\nBitte min. 7 breit und 4 hoch bauen und den Computer neu starten\n(Strg+R gedrueckt halten)")
