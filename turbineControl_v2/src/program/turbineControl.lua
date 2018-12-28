@@ -683,7 +683,7 @@ function createAllButtons()
                 page:add("#" .. (i + 1), function() printStatsAuto(i) end, x2, y, x2 + 5, y)
             end
 
-				for i = 0, amountEnergy, 1 do
+				for i = 0, (amountEnergy -1 ), 1 do
 					if i <= 7 then
 					page:add("+" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
 				elseif (i > 7 and i <= 15) then
@@ -868,8 +868,7 @@ function printStatsAuto(turbine)
     elseif lang == "en" then
         monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
     end
-	monitor[MonitorNumber].setCursorPos(2, 7)
-	monitor[MonitorNumber].write(peripheralList)
+
     --Reactor status (on/off)
     monitor[MonitorNumber].setCursorPos(2, 8)
     if lang == "de" then
