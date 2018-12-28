@@ -28,7 +28,7 @@ t = {} --Turbines
 --Total count of all turbines
 amountTurbines = 0
 amountEnergy = 0
-amountMonitors = 0
+
 --TouchpointLocation (same as the monitor)
 touchpointLocation = {}
 
@@ -262,6 +262,7 @@ end
 
 function initPeripherals()
 	--Get all peripherals
+	amountMonitors = 0
 	local peripheralList = peripheral.getNames()
 	for i = 1, #peripheralList do
 		--Turbines
