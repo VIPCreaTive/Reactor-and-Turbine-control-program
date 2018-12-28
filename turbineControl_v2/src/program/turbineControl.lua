@@ -687,7 +687,6 @@ function createAllButtons()
 					end
 				end
 
-
         elseif overallMode == "manual" then
             if i <= 7 then
                 page:add("#" .. (i + 1), function() printStatsMan(i) end, x1, y, x1 + 5, y)
