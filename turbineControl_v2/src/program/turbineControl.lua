@@ -34,6 +34,7 @@ local currSpeed = {}
 local speedFailCounter = {}
 
 lastenergypertick = 0
+energyStored = 0
 
 --Button renaming
 if lang == "de" then
@@ -211,7 +212,11 @@ function checkPeripherals()
 end
 
 function getEnergy()
-    return v.getEnergyStored()
+    for i = 0, amountEnergy, 1 do
+		energyStored = energyStored = v[i].getEnergyStored()
+	end
+	return energyStored()
+	
 end
 
 function getEnergyMax()
