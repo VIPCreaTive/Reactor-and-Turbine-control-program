@@ -22,10 +22,11 @@ turbineOnOff = ""
 --Peripherals
 mon = "" --Monitor
 r = "" --Reactor
-v = "" --Energy Storage
+v = {} --Energy Storage
 t = {} --Turbines
 --Total count of all turbines
 amountTurbines = 0
+amountEnergy = 0
 --TouchpointLocation (same as the monitor)
 touchpointLocation = {}
 
@@ -273,12 +274,14 @@ function initPeripherals()
 			mon = peripheral.wrap(peripheralList[i])
 			touchpointLocation = peripheralList[i]
 			--Capacitorbank / Energycell / Energy Core
+		elseif peripheral.getType(peripheralList[i]) == "draconic_rf_storage" then
+			v = peripheral.wrap(peripheralList[i])
 		else
-			local tmp = peripheral.wrap(peripheralList[i])
-			local stat,err = pcall(function() tmp.getEnergyStored() end)
-			if stat then
-				v = tmp
-			end
+			--local tmp = peripheral.wrap(peripheralList[i])
+			--local stat,err = pcall(function() tmp.getEnergyStored() end)
+			--if stat then
+			--	v = tmp
+			--end
 		end
 	end
 
