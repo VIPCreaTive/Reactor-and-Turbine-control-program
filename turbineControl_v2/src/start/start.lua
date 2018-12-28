@@ -261,8 +261,7 @@ end
 
 --===== Initialization of all peripherals =====
 
-function initPeripherals()
-for MonitorNumber=0,(amountMonitors -1) do	
+function initPeripherals()	
 	--Get all peripherals
 	amountMonitors = 0
 	local peripheralList = peripheral.getNames()
@@ -305,24 +304,23 @@ for MonitorNumber=0,(amountMonitors -1) do
 		end
 	end
 	--Monitor clear
-	monitor[MonitorNumber].setBackgroundColor(colors.black)
-	monitor[MonitorNumber].setTextColor(colors.red)
-	monitor[MonitorNumber].clear()
-	monitor[MonitorNumber].setCursorPos(1,1)
+	mon.setBackgroundColor(colors.black)
+	mon.setTextColor(colors.red)
+	mon.clear()
+	mon.setCursorPos(1,1)
 	--Monitor too small
 	local monX,monY = monitor[MonitorNumber].getSize()
 	if monX < 71 or monY < 26 then
 		if lang == "de" then
-			monitor[MonitorNumber].write("Monitor zu klein.\nBitte min. 7 breit und 4 hoch bauen und den Computer neu starten\n(Strg+R gedrueckt halten)")
+			mon.write("Monitor zu klein.\nBitte min. 7 breit und 4 hoch bauen und den Computer neu starten\n(Strg+R gedrueckt halten)")
 			error("Monitor zu klein.\nBitte min. 7 breit und 4 hoch bauen und den Computer neu starten\n(Strg+R gedrueckt halten)")
 		elseif lang == "en" then
-			monitor[MonitorNumber].write("Monitor too small\n Must be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
+			mon.write("Monitor too small\n Must be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 			error("Monitor too small.\nMust be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 		end
 	end
 
 	amountTurbines = amountTurbines - 1
-end
 end
 
 
