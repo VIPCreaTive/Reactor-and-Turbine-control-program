@@ -676,9 +676,9 @@ function createAllButtons()
             end
 				for i = 0, amountEnergy, 1 do
 					if i <= 7 then
-					page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
+					page:add("#" .. (i + 8), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
 				elseif (i > 7 and i <= 15) then
-					page:add("#" .. (i + 1), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
+					page:add("#" .. (i + 16), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
 				--elseif (i > 15 and i <= 23) then
 					--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
 				--elseif i > 23 then
