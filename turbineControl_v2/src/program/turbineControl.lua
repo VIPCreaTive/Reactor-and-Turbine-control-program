@@ -212,10 +212,10 @@ function checkPeripherals()
 end
 
 function getEnergy()
-    for i = 0, amountEnergy, 1 do
-		energyStored = energyStored = v[i].getEnergyStored()
+    for x = 0,(amountEnergy - 1), 1 do
+		EnergyStored = math.floor(EnergyStored + v[x].getEnergyStored())
 	end
-	return energyStored()
+	return energyStored
 	
 end
 
