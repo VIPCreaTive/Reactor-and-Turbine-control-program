@@ -39,7 +39,7 @@ else
 end
 
 --Url for file downloads
-local relUrl = "https://github.com/VIPCreaTive/Reactor-and-Turbine-control-program/"..branch.."/turbineControl_v2/src/"
+local relUrl = "https://raw.githubusercontent.com/VIPCreaTive/Reactor-and-Turbine-control-program/"..branch.."/turbineControl_v2/src/"
 
 
 --===== Functions =====
