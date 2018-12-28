@@ -264,7 +264,7 @@ end
 function initPeripherals()	
 	--Get all peripherals
 	amountMonitors = 0
-	local peripheralList = peripheral.getNames()
+	peripheralList = peripheral.getNames()
 	for i = 1, #peripheralList do
 		--Turbines
 		if peripheral.getType(peripheralList[i]) == "BigReactors-Turbine" then
@@ -282,7 +282,8 @@ function initPeripherals()
 			amountMonitors = amountMonitors + 1
 			--Capacitorbank / Energycell / Energy Core
 		elseif peripheral.getType(peripheralList[i]) == "draconic_rf_storage" then
-			v = peripheral.wrap(peripheralList[i])
+			v[amountEnergy] = peripheral.wrap(peripheralList[i])
+			amountEnergy = amountEnergy + 1
 		else
 			--local tmp = peripheral.wrap(peripheralList[i])
 			--local stat,err = pcall(function() tmp.getEnergyStored() end)
