@@ -262,6 +262,7 @@ end
 --===== Initialization of all peripherals =====
 
 function initPeripherals()
+for MonitorNumber=0,(amountMonitors -1) do	
 	--Get all peripherals
 	amountMonitors = 0
 	local peripheralList = peripheral.getNames()
@@ -321,6 +322,7 @@ function initPeripherals()
 	end
 
 	amountTurbines = amountTurbines - 1
+end
 end
 
 
