@@ -714,7 +714,6 @@ function createAllButtons()
     page:draw()
 end
 
-
 --Creates (additional) manual buttons
 function createManualButtons()
     page:add("reactorOn", toggleReactor, 11, 11, 15, 11)
