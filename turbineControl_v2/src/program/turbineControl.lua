@@ -858,7 +858,8 @@ function printStatsAuto(turbine)
     elseif lang == "en" then
         monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
     end
-
+	monitor[MonitorNumber].setCursorPos(2, 7)
+	monitor[MonitorNumber].write(peripheralList)
     --Reactor status (on/off)
     monitor[MonitorNumber].setCursorPos(2, 8)
     if lang == "de" then
