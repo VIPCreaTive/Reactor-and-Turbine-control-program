@@ -34,8 +34,7 @@ local currSpeed = {}
 local speedFailCounter = {}
 
 lastenergypertick = 0
-EnergyStored = 0
-MaxEnergyStored = 0
+
 
 --Button renaming
 if lang == "de" then
@@ -214,6 +213,7 @@ end
 
 
 function getEnergy()
+local EnergyStored = 0
     for x = 0,(amountEnergy - 1), 1 do
 		EnergyStored = math.floor(EnergyStored + v[x].getEnergyStored())
 	end
@@ -222,6 +222,7 @@ function getEnergy()
 end
 
 function getEnergyMax()
+local MaxEnergyStored = 0
     for x = 0,(amountEnergy - 1), 1 do
 		MaxEnergyStored = math.floor(MaxEnergyStored + v[x].getMaxEnergyStored())
 	end
