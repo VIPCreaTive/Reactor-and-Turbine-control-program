@@ -790,7 +790,7 @@ function printStatsAuto(turbine)
 
     mon.setCursorPos(2, 2)
     if lang == "de" then
-        mon.write("Energie: " .. getEnergyPer() .. "%  ")
+        mon.write("EnergieCore: " .. getEnergyPer() .. "%  ")
     elseif lang == "en" then
         mon.write("Energy: " .. getEnergyPer() .. "%  ")
     end
