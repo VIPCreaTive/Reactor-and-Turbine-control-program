@@ -34,7 +34,8 @@ local currSpeed = {}
 local speedFailCounter = {}
 
 lastenergypertick = 0
-energyStored = 0
+EnergyStored = 0
+MaxEnergyStored = 0
 
 --Button renaming
 if lang == "de" then
@@ -210,6 +211,7 @@ function checkPeripherals()
         end
     end
 end
+
 
 function getEnergy()
     for x = 0,(amountEnergy - 1), 1 do
