@@ -215,12 +215,15 @@ function getEnergy()
     for x = 0,(amountEnergy - 1), 1 do
 		EnergyStored = math.floor(EnergyStored + v[x].getEnergyStored())
 	end
-	return energyStored
+	return EnergyStored
 	
 end
 
 function getEnergyMax()
-    return v.getMaxEnergyStored()
+    for x = 0,(amountEnergy - 1), 1 do
+		MaxEnergyStored = math.floor(MaxEnergyStored + v[x].getMaxEnergyStored())
+	end
+	return MaxEnergyStored
 end
 
 function getEnergyPer()
