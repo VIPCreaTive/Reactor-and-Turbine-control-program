@@ -135,109 +135,110 @@ end
 
 
 function doUpdate(toVer,branch)
+	for MonitorNumber=0,(amountMonitors -1) do
+		--Set the monitor up
+		local x,y = monitor[MonitorNumber].getSize()
+		monitor[MonitorNumber].setBackgroundColor(colors.black)
+		monitor[MonitorNumber].clear()
 
-	--Set the monitor up
-	local x,y = mon.getSize()
-	mon.setBackgroundColor(colors.black)
-	mon.clear()
+		local x1 = x/2-15
+		local y1 = y/2-4
+		local x2 = x/2
+		local y2 = y/2
 
-	local x1 = x/2-15
-	local y1 = y/2-4
-	local x2 = x/2
-	local y2 = y/2
+		--Draw Box
+		monitor[MonitorNumber].setBackgroundColor(colors.gray)
+		monitor[MonitorNumber].setTextColor(colors.gray)
+		monitor[MonitorNumber].setCursorPos(x1,y1)
+		for i=1,8 do
+			monitor[MonitorNumber].setCursorPos(x1,y1+i-1)
+			monitor[MonitorNumber].write("                              ") --30 chars
+		end
 
-	--Draw Box
-	mon.setBackgroundColor(colors.gray)
-	mon.setTextColor(colors.gray)
-	mon.setCursorPos(x1,y1)
-	for i=1,8 do
-		mon.setCursorPos(x1,y1+i-1)
-		mon.write("                              ") --30 chars
-	end
+		--Print update message
+		monitor[MonitorNumber].setTextColor(colors.white)
 
-	--Print update message
-	mon.setTextColor(colors.white)
+		if lang == "de" then
 
-	if lang == "de" then
+			monitor[MonitorNumber].setCursorPos(x2-9,y1+1)
+			monitor[MonitorNumber].write("Update verfuegbar!") --18 chars
 
-		mon.setCursorPos(x2-9,y1+1)
-		mon.write("Update verfuegbar!") --18 chars
+			monitor[MonitorNumber].setCursorPos(x2-(math.ceil(string.len(toVer)/2)),y1+3)
+			monitor[MonitorNumber].write(toVer)
 
-		mon.setCursorPos(x2-(math.ceil(string.len(toVer)/2)),y1+3)
-		mon.write(toVer)
+			monitor[MonitorNumber].setCursorPos(x2-8,y1+5)
+			monitor[MonitorNumber].write("Zum installieren") --16 chars
 
-		mon.setCursorPos(x2-8,y1+5)
-		mon.write("Zum installieren") --16 chars
+			monitor[MonitorNumber].setCursorPos(x2-12,y1+6)
+			monitor[MonitorNumber].write("in den Computer schauen") --23 chars
 
-		mon.setCursorPos(x2-12,y1+6)
-		mon.write("in den Computer schauen") --23 chars
+		elseif lang == "en" then
 
-	elseif lang == "en" then
+			monitor[MonitorNumber].setCursorPos(x2-9,y1+1)
+			monitor[MonitorNumber].write("Update available!") --17 chars
 
-		mon.setCursorPos(x2-9,y1+1)
-		mon.write("Update available!") --17 chars
+			monitor[MonitorNumber].setCursorPos(x2-(math.ceil(string.len(toVer)/2)),y1+3)
+			monitor[MonitorNumber].write(toVer)
 
-		mon.setCursorPos(x2-(math.ceil(string.len(toVer)/2)),y1+3)
-		mon.write(toVer)
+			monitor[MonitorNumber].setCursorPos(x2-8,y1+5)
+			monitor[MonitorNumber].write("To install look") --15 chars
 
-		mon.setCursorPos(x2-8,y1+5)
-		mon.write("To install look") --15 chars
+			monitor[MonitorNumber].setCursorPos(x2-12,y1+6)
+			monitor[MonitorNumber].write("at the computer terminal") --24 chars
+		end
 
-		mon.setCursorPos(x2-12,y1+6)
-		mon.write("at the computer terminal") --24 chars
-	end
+		--Print install instructions to the terminal
+		term.clear()
+		term.setCursorPos(1,1)
+		local tx,ty = term.getSize()
 
-	--Print install instructions to the terminal
-	term.clear()
-	term.setCursorPos(1,1)
-	local tx,ty = term.getSize()
+		if lang == "de" then
+			print("Soll das Update installiert werden (j/n)?")
+			term.write("Eingabe: ")
+		elseif lang == "en" then
+			print("Do you want to install the update (y/n)?")
+			term.write("Input: ")
+		end
 
-	if lang == "de" then
-		print("Soll das Update installiert werden (j/n)?")
-		term.write("Eingabe: ")
-	elseif lang == "en" then
-		print("Do you want to install the update (y/n)?")
-		term.write("Input: ")
-	end
+		--Run Counter for installation skipping
+		local count = 10
+		local out = false
 
-	--Run Counter for installation skipping
-	local count = 10
-	local out = false
-
-	term.setCursorPos(tx/2-5,ty)
-	term.write(" -- 10 -- ")
-
-	while true do
-
-		local timer1 = os.startTimer(1)
+		term.setCursorPos(tx/2-5,ty)
+		term.write(" -- 10 -- ")
 
 		while true do
 
-			local event, p1 = os.pullEvent()
+			local timer1 = os.startTimer(1)
 
-			if event == "key" then
+			while true do
 
-				if p1 == 36 or p1 == 21 then
-					shell.run("/reactor-turbine-program/install/installer.lua update "..branch)
-					out = true
+				local event, p1 = os.pullEvent()
+
+				if event == "key" then
+
+					if p1 == 36 or p1 == 21 then
+						shell.run("/reactor-turbine-program/install/installer.lua update "..branch)
+						out = true
+						break
+					end
+
+				elseif event == "timer" and p1 == timer1 then
+
+					count = count - 1
+					term.setCursorPos(tx/2-5,ty)
+					term.write(" -- 0"..count.." -- ")
 					break
 				end
+			end
 
-			elseif event == "timer" and p1 == timer1 then
+			if out then break end
 
-				count = count - 1
-				term.setCursorPos(tx/2-5,ty)
-				term.write(" -- 0"..count.." -- ")
+			if count == 0 then
+				term.clear()
+				term.setCursorPos(1,1)
 				break
 			end
-		end
-
-		if out then break end
-
-		if count == 0 then
-			term.clear()
-			term.setCursorPos(1,1)
-			break
 		end
 	end
 end
@@ -303,18 +304,18 @@ function initPeripherals()
 		end
 	end
 	--Monitor clear
-	mon.setBackgroundColor(colors.black)
-	mon.setTextColor(colors.red)
-	mon.clear()
-	mon.setCursorPos(1,1)
+	monitor[MonitorNumber].setBackgroundColor(colors.black)
+	monitor[MonitorNumber].setTextColor(colors.red)
+	monitor[MonitorNumber].clear()
+	monitor[MonitorNumber].setCursorPos(1,1)
 	--Monitor too small
-	local monX,monY = mon.getSize()
+	local monX,monY = monitor[MonitorNumber].getSize()
 	if monX < 71 or monY < 26 then
 		if lang == "de" then
-			mon.write("Monitor zu klein.\nBitte min. 7 breit und 4 hoch bauen und den Computer neu starten\n(Strg+R gedrueckt halten)")
+			monitor[MonitorNumber].write("Monitor zu klein.\nBitte min. 7 breit und 4 hoch bauen und den Computer neu starten\n(Strg+R gedrueckt halten)")
 			error("Monitor zu klein.\nBitte min. 7 breit und 4 hoch bauen und den Computer neu starten\n(Strg+R gedrueckt halten)")
 		elseif lang == "en" then
-			mon.write("Monitor too small\n Must be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
+			monitor[MonitorNumber].write("Monitor too small\n Must be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 			error("Monitor too small.\nMust be at least 7 in length and 4 in height.\nPlease check and reboot the computer (Press and hold Ctrl+R)")
 		end
 	end
@@ -326,11 +327,13 @@ end
 --===== Shutdown and restart the computer =====
 
 function restart()
+for MonitorNumber=0,(amountMonitors -1) do
 	saveOptionFile()
-	mon.clear()
-	mon.setCursorPos(38,8)
-	mon.write("Rebooting...")
+	monitor[MonitorNumber].clear()
+	monitor[MonitorNumber].setCursorPos(38,8)
+	monitor[MonitorNumber].write("Rebooting...")
 	os.reboot()
+end
 end
 
 
