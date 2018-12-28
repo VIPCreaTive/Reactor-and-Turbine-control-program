@@ -28,6 +28,7 @@ t = {} --Turbines
 --Total count of all turbines
 amountTurbines = 0
 amountEnergy = 0
+amountMonitors = 0
 --TouchpointLocation (same as the monitor)
 touchpointLocation = {}
 
