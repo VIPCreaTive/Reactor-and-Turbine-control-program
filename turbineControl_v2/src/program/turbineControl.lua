@@ -904,7 +904,7 @@ function printStatsAuto(turbine)
         monitor[MonitorNumber].setCursorPos(2, 11)
         monitor[MonitorNumber].write("Effizienz: " .. (input.formatNumber(eff)) .. " RF/mb       ")
         monitor[MonitorNumber].setCursorPos(40, 2)
-        monitor[MonitorNumber].write("Turbinen: " .. (amountTurbines + 1) .. "  ")
+        monitor[MonitorNumber].write("Turbinen: " .. (amountTurbines + 1) .. "  " .. "Energy-Cores: " .. (amountEnergy) .. "   ")
         monitor[MonitorNumber].setCursorPos(2, 13)
         monitor[MonitorNumber].write("-- Turbine " .. (turbine + 1) .. " --")
     elseif lang == "en" then
