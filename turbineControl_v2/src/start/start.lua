@@ -274,6 +274,9 @@ function initPeripherals()
 		elseif peripheral.getType(peripheralList[i]) == "monitor" then
 			mon = peripheral.wrap(peripheralList[i])
 			touchpointLocation = peripheralList[i]
+			
+			monitor[amountMonitors] = peripheral.wrap(peripheralList[i])
+			amountMonitors = amountMonitors + 1
 			--Capacitorbank / Energycell / Energy Core
 		elseif peripheral.getType(peripheralList[i]) == "draconic_rf_storage" then
 			v = peripheral.wrap(peripheralList[i])
