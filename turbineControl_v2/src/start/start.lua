@@ -21,6 +21,7 @@ targetSteam = 0
 turbineOnOff = ""
 --Peripherals
 mon = "" --Monitor
+monitor = {}
 r = "" --Reactor
 v = {} --Energy Storage
 t = {} --Turbines
