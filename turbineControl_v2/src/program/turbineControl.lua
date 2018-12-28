@@ -686,7 +686,7 @@ function createAllButtons()
 						else y = y + 2
 					end
 				end
-			end
+
 
         elseif overallMode == "manual" then
             if i <= 7 then
@@ -703,6 +703,7 @@ function createAllButtons()
             end
         end --mode
     end --for
+end
     --Other buttons
     if lang == "de" then
         page:add("Hauptmenue", function() run("/reactor-turbine-program/start/menu.lua") end, 2, 23, 17, 23)
