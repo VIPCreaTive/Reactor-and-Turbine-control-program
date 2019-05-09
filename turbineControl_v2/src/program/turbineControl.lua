@@ -679,29 +679,29 @@ function createAllButtons()
     for i = 0, amountTurbines, 1 do
         if overallMode == "auto" then
             if i <= 7 then
-                page:add("#" .. (1), function() printStatsAuto(i) end, x1, y, x1 + 5, y)
-				page:add("#" .. (2), function() printStatsAuto(i+1) end, x1, y+10, x1 + 5, y+10)
+                page:add("#" .. (i), function() printStatsAuto(i) end, x1, y, x1 + 5, y)
+				page:add("#" .. (i+1), function() printStatsAuto(i+1) end, x1, y+10, x1 + 5, y+10)
             elseif (i > 7 and i <= 15) then
                 page:add("#" .. (i + 1), function() printStatsAuto(i) end, x2, y, x1 + 5, y)
             end -- if-amount
 		
         elseif overallMode == "manual" then
-            --if i <= 7 then
+            if i <= 7 then
                 --page:add("#" .. (i + 1), function() printStatsMan(i) end, x1, y, x1 + 5, y)
-            --elseif (i > 7 and i <= 15) then
+            elseif (i > 7 and i <= 15) then
                 --page:add("#" .. (i + 1), function() printStatsMan(i) end, x2, y, x2 + 5, y)
-            --elseif (i > 15 and i <= 23) then
+            elseif (i > 15 and i <= 23) then
                 --page:add("#" .. (i + 1), function() printStatsMan(i) end, x3, y, x3 + 5, y)
-            --elseif i > 23 then
+            elseif i > 23 then
                 --page:add("#" .. (i + 1), function() printStatsMan(i) end, x4, y, x4 + 5, y)
         end
         if (i == 7 or i == 15 or i == 23) then 
 			y = 4
 		else y = y + 2
-            end
+		end
         end --if mode
     end --for
-
+	
 	--Energycore buttons		
 	for i = 0, (amountEnergy -1 ), 1 do
 		if i <= 7 then
