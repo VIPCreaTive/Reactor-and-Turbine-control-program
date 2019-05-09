@@ -676,7 +676,7 @@ function createAllButtons()
 	local y2 = 4
 
     --Turbine buttons
-    for 0 = 1, amountTurbines, 1 do
+    for i = 0, amountTurbines, 1 do
 		if i <= 7 then
 			page:add("#" .. (i + 1), function() printStatsAuto(i) end, x1, y, x1 + 5, y)
 		elseif (i > 7 and i <= 15) then
