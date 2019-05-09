@@ -236,12 +236,18 @@ function getEnergyPer()
     return enPer
 end
 
+--Gets the last energy stored per core
+function energypercore(core)
+	local energystoredCore = v[core].getEnergyStored()
+	return energystoredCore
+end
+
 --Gets the Differenz Power IN-Out per Core
 function diffperenergycore(core)
-	local energypertick = v[core].getEnergyStored()
-	local lastdiffpertick = getEnergy()
-	Diffpercore = (energypertick - lastdiffpertick) / 20
-return Diffpercore
+	local energynow = v[core].getEnergyStored()
+	local lastenergystoredpercore = getEnergy()
+	Diffpercore = (energynow - lastenergystoredpercore) / 20
+	return Diffpercore
 end
 
 --Returns the current energy fill status of a turbine
@@ -989,7 +995,6 @@ function printStatsAuto(turbine)
 	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
 end
 lastenergypertick = getEnergy()
-lastdiffpertick = Diffpercore(core)
 end
 
 --Prints Energy-Core-Stats
@@ -1141,6 +1146,7 @@ function printStatsCoreAuto(core)
 	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
 end
 lastenergypertick = getEnergy()
+lastenergystoredpercore = energypercore(core)
 end
 
 
