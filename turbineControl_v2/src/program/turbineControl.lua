@@ -988,7 +988,8 @@ function printStatsCoreAuto(core)
     if currStat ~= lastStat then
         if page.buttonList["#" .. lastStat + 1].active then
             page:toggleButton("#" .. lastStat + 1)
-		elseif page.buttonList["*" .. lastStat + 1].active then
+		end
+		if page.buttonList["*" .. lastStat + 1].active then
 			page:toggleButton("*" .. lastStat + 1)
         end
     end
