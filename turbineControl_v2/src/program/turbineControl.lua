@@ -34,7 +34,7 @@ local currSpeed = {}
 local speedFailCounter = {}
 
 lastenergypertick = 0
-
+devicetype = 1
 
 --Button renaming
 if lang == "de" then
@@ -546,7 +546,13 @@ end
 --Checks the current energy level and controlls turbines/reactor
 --based on user settings (reactorOn, reactorOff)
 function checkEnergyLevel()
-    printStatsAuto(currStat)
+	
+	--checks the devicetype (turbine or core)
+	if devicetype == 1 then
+		printStatsAuto(currStat)
+	else
+		printStatsCoreAuto(currStat)
+	end
     --Level > user setting (default: 90%)
     if getEnergyPer() >= reactorOffAt then
         print("Energy >= reactorOffAt")
@@ -780,6 +786,9 @@ end
 --displays all info on the screen (auto mode)
 function printStatsAuto(turbine)
     
+	--set the variable "devicetype" to turbine(1) / Core(2)
+	devicetype = 1
+	
 	for MonitorNumber=0,(amountMonitors -1) do
 	monitor[MonitorNumber].setBackgroundColor(backgroundColor)
 	monitor[MonitorNumber].setCursorPos(2, 1)
@@ -789,14 +798,14 @@ function printStatsAuto(turbine)
     currStat = turbine
 
     --toggles turbine buttons if pressed (old button off, new button on)
-    --if not page.buttonList["#" .. currStat + 1].active then
-    --    page:toggleButton("#" .. currStat + 1)
-    --end
-    --if currStat ~= lastStat then
-    --    if page.buttonList["#" .. lastStat + 1].active then
-    --       page:toggleButton("#" .. lastStat + 1)
-    --    end
-    --end
+    if not page.buttonList["#" .. currStat + 1].active then
+        page:toggleButton("#" .. currStat + 1)
+    end
+    if currStat ~= lastStat then
+        if page.buttonList["*" .. lastStat + 1].active then
+           page:toggleButton("*" .. lastStat + 1)
+        end
+    end
 
     --gets overall energy production
     local rfGen = 0
@@ -972,6 +981,9 @@ end
 --Prints Energy-Core-Stats
 function printStatsCoreAuto(core)
     
+	--set the variable "devicetype" to turbine(1) / Core(2)
+	devicetype = 2
+	
 	for MonitorNumber=0,(amountMonitors -1) do
 		monitor[MonitorNumber].setBackgroundColor(backgroundColor)
 		monitor[MonitorNumber].setCursorPos(2, 1)
@@ -985,19 +997,18 @@ function printStatsCoreAuto(core)
 	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
-	--if not page.buttonList["*" .. CurrStat + 1].active then
-    --    page:toggleButton("*" .. currStat + 1)
-    --end
+	if not page.buttonList["*" .. CurrStat + 1].active then
+        page:toggleButton("*" .. currStat + 1)
+    end
 	
-	--if currStat ~= lastStat then
-    --    if page.buttonList["#" .. lastStat + 1].active then
-    --        page:toggleButton("#" .. lastStat + 1)
-	--		page:toggleButton("*" .. lastStat + 1)
-	--	end
+	if currStat ~= lastStat then
+        if page.buttonList["#" .. lastStat + 1].active then
+            page:toggleButton("#" .. lastStat + 1)
+		end
 		--if page.buttonList["*" .. lastStat + 1].active then
 		--	page:toggleButton("*" .. lastStat + 1)
         --end
-    --end
+    end
 
 
 
