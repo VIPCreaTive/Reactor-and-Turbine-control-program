@@ -1172,8 +1172,7 @@ function printStatsCoreAuto(turbine)
 end
 lastenergypertick = getEnergy()
 end
-=======
->>>>>>> parent of 721a07b... Update turbineControl.lua
+
 
 --printStats (manual)
 function printStatsMan(turbine)
