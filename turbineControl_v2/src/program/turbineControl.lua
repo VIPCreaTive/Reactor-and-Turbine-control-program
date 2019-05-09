@@ -985,7 +985,7 @@ function printStatsCoreAuto(cores)
 	
     --toggles turbine buttons if pressed (old button off, new button on)
 	for x=0 , amountTurbines, 1 do
-		if not page.buttonList["#" .. x.active then
+		if not page.buttonList["#" .. x].active then
 		else
 			page:toggleButton("#" .. x)
 		end
