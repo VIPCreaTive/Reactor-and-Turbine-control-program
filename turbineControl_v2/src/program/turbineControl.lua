@@ -985,19 +985,19 @@ function printStatsCoreAuto(core)
 	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
-	if not page.buttonList["*" .. CurrStat + 1].active then
-        page:toggleButton("*" .. currStat + 1)
-    end
+	--if not page.buttonList["*" .. CurrStat + 1].active then
+    --    page:toggleButton("*" .. currStat + 1)
+    --end
 	
-	if currStat ~= lastStat then
-        if page.buttonList["#" .. lastStat + 1].active then
-            page:toggleButton("#" .. lastStat + 1)
-			page:toggleButton("*" .. lastStat + 1)
-		end
+	--if currStat ~= lastStat then
+    --    if page.buttonList["#" .. lastStat + 1].active then
+    --        page:toggleButton("#" .. lastStat + 1)
+	--		page:toggleButton("*" .. lastStat + 1)
+	--	end
 		--if page.buttonList["*" .. lastStat + 1].active then
 		--	page:toggleButton("*" .. lastStat + 1)
         --end
-    end
+    --end
 
 
 
