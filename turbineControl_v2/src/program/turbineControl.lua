@@ -1056,7 +1056,7 @@ function printStatsCoreAuto(cores)
     --refreshes the last turbine id
     lastStat = cores
 	
-	
+	monitor[MonitorNumber].setCursorPos(2, 6)
 	monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumberComma(math.floor(v[cores].getEnergyStored()))) .. " RF/t      ")
 end
 lastenergypertick = getEnergy()
