@@ -1087,8 +1087,10 @@ function printStatsCoreAuto(core)
 		monitor[MonitorNumber].setCursorPos(2, 13)
         monitor[MonitorNumber].write("-- Energiespeicher " .. (core + 1) .. " --")
 		monitor[MonitorNumber].setCursorPos(2, 14)
-		monitor[MonitorNumber].write("Energie gespeichert: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF			")
+		monitor[MonitorNumber].write("Energiekapazität: " .. (input.formatNumberComma(math.floor(v[core].getMaxEnergyStored()))) .. " RF			")
 		monitor[MonitorNumber].setCursorPos(2, 15)
+		monitor[MonitorNumber].write("Energie gespeichert: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF			")
+		monitor[MonitorNumber].setCursorPos(2, 16)
 		
 		--Berechne Differenz pro Core
 		monitor[MonitorNumber].write("Energie IN-OUT: ")
@@ -1105,9 +1107,7 @@ function printStatsCoreAuto(core)
 		monitor[MonitorNumber].write(input.formatNumber(math.floor(energypercore(core))))
 		monitor[MonitorNumber].setCursorPos(2, 17)
 		monitor[MonitorNumber].write(input.formatNumber(math.floor(lastenergystoredpercore)))
-		
-		
-		
+			
     elseif lang == "en" then
         monitor[MonitorNumber].write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
         monitor[MonitorNumber].setCursorPos(2, 10)
@@ -1121,6 +1121,8 @@ function printStatsCoreAuto(core)
 		--Energycore Stats
 		monitor[MonitorNumber].setCursorPos(2, 13)
         monitor[MonitorNumber].write("-- Energycore " .. (core + 1) .. " --")
+		monitor[MonitorNumber].setCursorPos(2, 14)
+		monitor[MonitorNumber].write("Energy total: " .. (input.formatNumberComma(math.floor(v[core].getMaxEnergyStored()))) .. " RF			")
 		monitor[MonitorNumber].setCursorPos(2, 14)
 		monitor[MonitorNumber].write("Energy stored: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF		")
 		monitor[MonitorNumber].setTextColor(textColor)
