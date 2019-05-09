@@ -989,7 +989,7 @@ function printStatsCoreAuto(cores)
 		else
 			page:toggleButton("#" .. x)
 		end
-	
+	end
 --       page:toggleButton("#" .. currStat + 1)
 --    end
 --    if currStat ~= lastStat then
