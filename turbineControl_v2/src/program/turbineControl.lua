@@ -1046,6 +1046,32 @@ function printStatsCoreAuto(core)
         monitor[MonitorNumber].write(" ")
     end
     monitor[MonitorNumber].setTextColor(textColor)
+	
+	--Prints the Reactor Stats
+	monitor[MonitorNumber].setTextColor(tonumber(textColor))
+    monitor[MonitorNumber].setCursorPos(2, 9)
+    local fuelCons = tostring(r.getFuelConsumedLastTick())
+    local fuelCons2 = string.sub(fuelCons, 0, 4)
+    local eff = math.floor(rfGen / r.getFuelConsumedLastTick())
+    if not r.getActive() then eff = 0 end
+
+    if lang == "de" then
+        monitor[MonitorNumber].write("Reaktor-Verbrauch: " .. fuelCons2 .. "mb/t     ")
+        monitor[MonitorNumber].setCursorPos(2, 10)
+        monitor[MonitorNumber].write("Steam: " .. (input.formatNumber(math.floor(r.getHotFluidProducedLastTick()))) .. "mb/t    ")
+        monitor[MonitorNumber].setCursorPos(2, 11)
+        monitor[MonitorNumber].write("Effizienz: " .. (input.formatNumber(eff)) .. " RF/mb       ")
+        monitor[MonitorNumber].setCursorPos(40, 2)
+        monitor[MonitorNumber].write("Turbinen: " .. (amountTurbines + 1) .. "  " .. "Energiespeicher: " .. (amountEnergy) .. "   ")
+    elseif lang == "en" then
+        monitor[MonitorNumber].write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
+        monitor[MonitorNumber].setCursorPos(2, 10)
+        monitor[MonitorNumber].write("Steam: " .. (input.formatNumberComma(math.floor(r.getHotFluidProducedLastTick()))) .. "mb/t    ")
+        monitor[MonitorNumber].setCursorPos(2, 11)
+        monitor[MonitorNumber].write("Efficiency: " .. (input.formatNumberComma(eff)) .. " RF/mb       ")
+        monitor[MonitorNumber].setCursorPos(40, 2)
+        monitor[MonitorNumber].write("Turbines: " .. (amountTurbines + 1) .. "  " .. "Energy-Cores: " .. (amountEnergy) .. "   ")
+    end
 
     --prints the overall energy production
     monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
