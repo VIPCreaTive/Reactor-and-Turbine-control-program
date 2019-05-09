@@ -977,6 +977,25 @@ function printStatsCoreAuto(cores)
 		monitor[MonitorNumber].setCursorPos(2, 1)
 		monitor[MonitorNumber].write("Test-Monitor-Nr: " .. (MonitorNumber))
 	
+	--refresh current turbine
+    currStat = turbine
+
+    --toggles turbine buttons if pressed (old button off, new button on)
+    if not page.buttonList["#" .. currStat + 1].active then
+        page:toggleButton("#" .. currStat + 1)
+    end
+    if currStat ~= lastStat then
+        if page.buttonList["#" .. lastStat + 1].active then
+            page:toggleButton("#" .. lastStat + 1)
+        end
+    end
+
+    --gets overall energy production
+    local rfGen = 0
+    for i = 0, amountTurbines, 1 do
+        rfGen = rfGen + t[i].getEnergyProducedLastTick()
+    end
+	
 		monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
 		monitor[MonitorNumber].setTextColor(tonumber(textColor))
 
