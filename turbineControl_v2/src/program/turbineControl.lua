@@ -978,6 +978,10 @@ function printStatsAuto(turbine)
     lastStat = turbine
 end
 lastenergypertick = getEnergy()
+	monitor[MonitorNumber].setCursorPos(2, 20)
+	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
+	monitor[MonitorNumber].setCursorPos(2, 21)
+	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
 end
 
 --Prints Energy-Core-Stats
@@ -993,11 +997,6 @@ function printStatsCoreAuto(core)
 	
 	--refresh current turbine
     currStat = core
-	
-	monitor[MonitorNumber].setCursorPos(2, 20)
-	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
-	monitor[MonitorNumber].setCursorPos(2, 21)
-	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
 	if not page.buttonList["*" .. currStat + 1].active then
@@ -1080,6 +1079,11 @@ function printStatsCoreAuto(core)
 	monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF/t      ")
 end
 lastenergypertick = getEnergy()
+
+	monitor[MonitorNumber].setCursorPos(2, 20)
+	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
+	monitor[MonitorNumber].setCursorPos(2, 21)
+	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
 end
 
 
