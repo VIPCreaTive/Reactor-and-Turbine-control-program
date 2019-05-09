@@ -700,7 +700,7 @@ function createAllButtons()
             end
         end --if mode
     end --for
-	
+	 
 	--Energycore buttons		
 	for i = 0, (amountEnergy -1 ), 1 do
 		if i <= 7 then
