@@ -682,19 +682,6 @@ function createAllButtons()
             elseif (i > 7 and i <= 15) then
                 page:add("#" .. (i + 1), function() printStatsAuto(i) end, 47, y, 47 + 5, y)
             end
-
-	--Energycore buttons		
-		for i = 0, (amountEnergy -1 ), 1 do
-			if i <= 7 then
-			--page:add("+" .. (i + 1), function() printStatsAuto(i) end, 54, y, 54 + 5, y)
-		elseif (i > 7 and i <= 15) then
-			--page:add("+" .. (i + 1), function() printStatsAuto(i) end, 54, y, 54 + 5, y)
-		--elseif (i > 15 and i <= 23) then
-			--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
-		--elseif i > 23 then
-			--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
-		end --if
-		end --for
 		
         elseif overallMode == "manual" then
             if i <= 7 then
@@ -708,10 +695,26 @@ function createAllButtons()
             end
 
             if (i == 7 or i == 15 or i == 23) then y = 4
-            else y = y + 2
+				else y = y + 2
             end
-        end --mode
+        end --if mode
     end --for
+	
+	--Energycore buttons		
+	for i = 0, (amountEnergy -1 ), 1 do
+		if i <= 7 then
+			--page:add("+" .. (i + 1), function() printStatsAuto(i) end, 54, y, 54 + 5, y)
+		elseif (i > 7 and i <= 15) then
+			--page:add("+" .. (i + 1), function() printStatsAuto(i) end, 54, y, 54 + 5, y)
+		--elseif (i > 15 and i <= 23) then
+			--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
+		--elseif i > 23 then
+			--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
+			if (i == 7 or i == 15 or i == 23) then y = 4
+				else y = y + 2
+			end
+	end --if
+	
     --Other buttons
     if lang == "de" then
         page:add("Hauptmenue", function() run("/reactor-turbine-program/start/menu.lua") end, 2, 23, 17, 23)
