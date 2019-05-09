@@ -1062,6 +1062,7 @@ function printStatsCoreAuto(core)
     if lang == "de" then
         monitor[MonitorNumber].setCursorPos(40, 2)
         monitor[MonitorNumber].write("Turbinen: " .. (amountTurbines + 1) .. "  " .. "Energiespeicher: " .. (amountEnergy) .. "   ")
+		monitor[MonitorNumber].setCursorPos(2, 9)
 		monitor[MonitorNumber].write("Reaktor-Verbrauch: " .. fuelCons2 .. "mb/t     ")
         monitor[MonitorNumber].setCursorPos(2, 10)
         monitor[MonitorNumber].write("Steam: " .. (input.formatNumber(math.floor(r.getHotFluidProducedLastTick()))) .. "mb/t    ")
@@ -1097,7 +1098,7 @@ function printStatsCoreAuto(core)
 				else
 					monitor[MonitorNumber].setTextColor(colors.red)
 				end
-		monitor[MonitorNumber].write(input.formatNumber(math.floor(Diffpercore)) .. " RF/t			")
+		monitor[MonitorNumber].write(input.formatNumber(math.floor(Diffpercore)) .. " RF/t				 ")
 		monitor[MonitorNumber].setTextColor(textColor)
 		
 		monitor[MonitorNumber].setCursorPos(2, 16)
