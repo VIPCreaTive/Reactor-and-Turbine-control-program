@@ -975,7 +975,7 @@ function printStatsCoreAuto(turbine)
 	for MonitorNumber=0,(amountMonitors -1) do
 	monitor[MonitorNumber].setBackgroundColor(backgroundColor)
 	monitor[MonitorNumber].setCursorPos(2, 1)
-	monitor[MonitorNumber].write("Monitor-Nr: " .. (MonitorNumber))
+	monitor[MonitorNumber].write("Test-Monitor-Nr: " .. (MonitorNumber))
 	
 	--refresh current turbine
     currStat = turbine
