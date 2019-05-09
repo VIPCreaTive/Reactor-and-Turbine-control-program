@@ -1090,14 +1090,21 @@ function printStatsCoreAuto(core)
 		
 		--Berechne Differenz pro Core
 		monitor[MonitorNumber].write("Energie IN-OUT: ")
-			Diffpercore = (energypercore(core) - lastenergystoredpercore) / 20
-				if Diffpercore >= 0 then
-					monitor[MonitorNumber].setTextColor(colors.green)
-				else
-					monitor[MonitorNumber].setTextColor(colors.red)
-				end
-		monitor[MonitorNumber].write(input.formatNumberComma(math.floor(Diffpercore)) .. " RF/t		")
+			--Diffpercore = (energypercore(core) - lastenergystoredpercore) / 20
+			--	if Diffpercore >= 0 then
+			--		monitor[MonitorNumber].setTextColor(colors.green)
+			--	else
+			--		monitor[MonitorNumber].setTextColor(colors.red)
+			--	end
+		--monitor[MonitorNumber].write(input.formatNumberComma(math.floor(Diffpercore)) .. " RF/t		")
 		monitor[MonitorNumber].setTextColor(textColor)
+		
+		monitor[MonitorNumber].setCursorPos(2, 16)
+		monitor[MonitorNumber].write(energypercore(core))
+		monitor[MonitorNumber].write(lastenergystoredpercore)
+		
+		
+		
     elseif lang == "en" then
         monitor[MonitorNumber].write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
         monitor[MonitorNumber].setCursorPos(2, 10)
