@@ -976,12 +976,13 @@ function printStatsAuto(turbine)
 
     --refreshes the last turbine id
     lastStat = turbine
-end
-lastenergypertick = getEnergy()
+	
 	monitor[MonitorNumber].setCursorPos(2, 20)
 	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
 	monitor[MonitorNumber].setCursorPos(2, 21)
 	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
+end
+lastenergypertick = getEnergy()
 end
 
 --Prints Energy-Core-Stats
@@ -1071,19 +1072,19 @@ function printStatsCoreAuto(core)
 	
 	monitor[MonitorNumber].setCursorPos(2, 25)
     monitor[MonitorNumber].write("Version " .. version)
-
-    --refreshes the last turbine id
-    lastStat = core
 	
 	monitor[MonitorNumber].setCursorPos(2, 6)
 	monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF/t      ")
-end
-lastenergypertick = getEnergy()
-
+	
+    --refreshes the last turbine id
+    lastStat = core
+	
 	monitor[MonitorNumber].setCursorPos(2, 20)
 	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
 	monitor[MonitorNumber].setCursorPos(2, 21)
 	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
+end
+lastenergypertick = getEnergy()
 end
 
 
