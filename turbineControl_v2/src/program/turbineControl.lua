@@ -980,7 +980,7 @@ function printStatsAuto(turbine)
 end
 lastenergypertick = getEnergy()
 end
-<<<<<<< HEAD
+
 --Prints Energy-Core-Stats
 function printStatsCoreAuto(turbine)
     
