@@ -691,9 +691,9 @@ function createAllButtons()
 	--Energycore buttons		
 	for i = 0, (amountEnergy - 1), 1 do
 		if i <= 7 then
-			page:add("#" .. (i + 16), function() printStatsCoreAuto(i) end, x3, y2, x3 + 5, y2)
+			page:add("*" .. (i + 16), function() printStatsCoreAuto(i) end, x3, y2, x3 + 5, y2)
 		elseif (i > 7 and i <= 15) then
-			page:add("#" .. (i + 16), function() printStatsCoreAuto(i) end, x4, y2, x4 + 5, y2)
+			page:add("*" .. (i + 16), function() printStatsCoreAuto(i) end, x4, y2, x4 + 5, y2)
 		end --if amount
 			if (i == 7 or i == 15 or i == 23) then 
 				y2 = 4
@@ -985,18 +985,20 @@ function printStatsCoreAuto(core)
 	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
-    if currStat ~= lastStat then
-        if page.buttonList["#" .. lastStat + 1].active then
-            page:toggleButton("#" .. lastStat + 1)
-		end
-		if page.buttonList["*" .. lastStat + 1].active then
-			page:toggleButton("*" .. lastStat + 1)
-        end
-    end
-
 	if not page.buttonList["*" .. CurrStat + 1].active then
         page:toggleButton("*" .. currStat + 1)
     end
+	
+	if currStat ~= lastStat then
+        if page.buttonList["#" .. lastStat + 1].active then
+            page:toggleButton("#" .. lastStat + 1)
+			page:toggleButton("*" .. lastStat + 1)
+		end
+		--if page.buttonList["*" .. lastStat + 1].active then
+		--	page:toggleButton("*" .. lastStat + 1)
+        --end
+    end
+
 
 
     --gets overall energy production
