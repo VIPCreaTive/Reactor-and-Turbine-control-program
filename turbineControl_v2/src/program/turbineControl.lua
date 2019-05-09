@@ -1019,6 +1019,12 @@ function printStatsCoreAuto(core)
 			page:toggleButton("#" .. lastStat + 1)
         end
     end
+	
+	--gets overall energy production turbines
+    local rfGen = 0
+    for i = 0, amountTurbines, 1 do
+        rfGen = rfGen + t[i].getEnergyProducedLastTick()
+    end
 
 		monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
 		monitor[MonitorNumber].setTextColor(tonumber(textColor))
