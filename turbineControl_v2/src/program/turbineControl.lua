@@ -1102,7 +1102,8 @@ function printStatsCoreAuto(core)
 		monitor[MonitorNumber].setCursorPos(2, 16)
 		monitor[MonitorNumber].write(input.formatNumber(math.floor(energypercore(core))))
 		monitor[MonitorNumber].setCursorPos(2, 17)
-		monitor[MonitorNumber].write(input.formatNumber(math.floor(lastenergystoredpercore)))
+		save = lastenergystoredpercore
+		monitor[MonitorNumber].write(input.formatNumber(math.floor(save)))
 		
 		
 		
