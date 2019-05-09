@@ -239,8 +239,8 @@ end
 --Gets the Differenz Power IN-Out per Core
 function diffperenergycore(core)
 	local energypertick = v[core].getEnergyStored()
-	local lastenergypertick = getEnergy()
-	Diffpercore = (energypertick - lastenergypertick) / 20
+	local lastdiffpertick = getEnergy()
+	Diffpercore = (energypertick - lastdiffpertick) / 20
 return Diffpercore
 end
 
@@ -991,6 +991,7 @@ function printStatsAuto(turbine)
 	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
 end
 lastenergypertick = getEnergy()
+lastdiffpertick = Diffpercore(core)
 end
 
 --Prints Energy-Core-Stats
@@ -1109,7 +1110,7 @@ function printStatsCoreAuto(core)
 				monitor[MonitorNumber].setTextColor(colors.red)
 			end
 		monitor[MonitorNumber].write(input.formatNumberComma(math.floor(diffperenergycore(core))) .. " RF/t		")
-		
+		monitor[MonitorNumber].setTextColor(textColor)
 		
     elseif lang == "en" then
         monitor[MonitorNumber].write("Energy-Storage: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      		")
@@ -1118,6 +1119,7 @@ function printStatsCoreAuto(core)
         monitor[MonitorNumber].write("-- Energycore " .. (core + 1) .. " --")
 		monitor[MonitorNumber].setCursorPos(2, 14)
 		monitor[MonitorNumber].write("Energy stored: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF		")
+		monitor[MonitorNumber].setTextColor(textColor)
     end
 	
 	monitor[MonitorNumber].setCursorPos(2, 25)
