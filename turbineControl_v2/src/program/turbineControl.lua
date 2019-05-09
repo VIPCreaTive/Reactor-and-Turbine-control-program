@@ -704,7 +704,7 @@ function createAllButtons()
 	--Energycore buttons		
 	for i = 0, (amountEnergy -1 ), 1 do
 		if i <= 7 then
-			page:add("+" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, 10)
+			page:add("+" .. (i + 1), function() printStatsAuto(i) end, x3, 10, x3 + 5, 10)
 		elseif (i > 7 and i <= 15) then
 			page:add("+" .. (i + 1), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
 		--elseif (i > 15 and i <= 23) then
