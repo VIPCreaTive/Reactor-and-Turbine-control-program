@@ -34,6 +34,7 @@ local currSpeed = {}
 local speedFailCounter = {}
 
 lastenergypertick = 0
+lastenergystoredpercore = 0
 devicetype = 1
 
 --Button renaming
@@ -1103,8 +1104,7 @@ function printStatsCoreAuto(core)
 		monitor[MonitorNumber].setCursorPos(2, 16)
 		monitor[MonitorNumber].write(input.formatNumber(math.floor(energypercore(core))))
 		monitor[MonitorNumber].setCursorPos(2, 17)
-		save = lastenergystoredpercore
-		monitor[MonitorNumber].write(input.formatNumber(math.floor(save)))
+		monitor[MonitorNumber].write(input.formatNumber(math.floor(lastenergystoredpercore)))
 		
 		
 		
