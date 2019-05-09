@@ -683,21 +683,20 @@ function createAllButtons()
                 page:add("#" .. (i + 1), function() printStatsAuto(i) end, x2, y, x2 + 5, y)
             end
 
-			--CREATES BUTTONS FOR ENERGY CORE
-			for i = 0, (amountEnergy -1 ), 1 do
-				if i <= 7 then
-				page:add("+" .. (i + 1), function() printStatsCoreAuto(i) end, x3, y, x3 + 5, y)
-			elseif (i > 7 and i <= 15) then
-				page:add("+" .. (i + 1), function() run("/reactor-turbine-program/program/test") end, x4, y, x4 + 5, y)
-			--elseif (i > 15 and i <= 23) then
-				--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
-			--elseif i > 23 then
-				--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
-			end
-				if (i == 7 or i == 15 or i == 23) then y = 4
-					else y = y + 2
+				for i = 0, (amountEnergy -1 ), 1 do
+					if i <= 7 then
+					page:add("+" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
+				elseif (i > 7 and i <= 15) then
+					page:add("+" .. (i + 1), function() run("/reactor-turbine-program/program/test") end, x4, y, x4 + 5, y)
+				--elseif (i > 15 and i <= 23) then
+					--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
+				--elseif i > 23 then
+					--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
 				end
-			end
+					if (i == 7 or i == 15 or i == 23) then y = 4
+						else y = y + 2
+					end
+				end
 
         elseif overallMode == "manual" then
             if i <= 7 then
@@ -981,6 +980,7 @@ function printStatsAuto(turbine)
 end
 lastenergypertick = getEnergy()
 end
+<<<<<<< HEAD
 --Prints Energy-Core-Stats
 function printStatsCoreAuto(turbine)
     
@@ -1172,6 +1172,8 @@ function printStatsCoreAuto(turbine)
 end
 lastenergypertick = getEnergy()
 end
+=======
+>>>>>>> parent of 721a07b... Update turbineControl.lua
 
 --printStats (manual)
 function printStatsMan(turbine)
