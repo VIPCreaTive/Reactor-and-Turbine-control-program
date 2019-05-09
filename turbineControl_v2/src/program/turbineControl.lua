@@ -985,20 +985,16 @@ function printStatsCoreAuto(cores)
 	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
-	for x=0 , amountTurbines, 1 do
-		if not page.buttonList["#" .. x].active then
-		monitor[MonitorNumber].write("#" .. x)
-		else
-			page:toggleButton("#" .. x)
-		end
-	end
---       page:toggleButton("#" .. currStat + 1)
---    end
---    if currStat ~= lastStat then
---        if page.buttonList["*" .. lastStat + 1].active then
---            page:toggleButton("*" .. lastStat + 1)
- --       end
---    end
+    if not page.buttonList["*" .. currStat + 1].active then
+        page:toggleButton("*" .. currStat + 1)
+    end
+    if currStat ~= lastStat then
+        if page.buttonList["#" .. lastStat + 1].active then
+            page:toggleButton("#" .. lastStat + 1)
+		elseif page.buttonList["*" .. lastStat + 1].active then
+			page:toggleButton("*" .. lastStat + 1)
+        end
+    end
 
     --gets overall energy production
 	
