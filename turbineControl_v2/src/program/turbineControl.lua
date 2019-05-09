@@ -1051,10 +1051,10 @@ function printStatsCoreAuto(core)
     for i = 1, part1 do
         monitor[MonitorNumber].write(" ")
     end
-    monitor[MonitorNumber].setTextColor(textColor)
 	
 	--Prints the Reactor Stats
 	monitor[MonitorNumber].setTextColor(tonumber(textColor))
+	monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
     monitor[MonitorNumber].setCursorPos(2, 9)
     local fuelCons = tostring(r.getFuelConsumedLastTick())
     local fuelCons2 = string.sub(fuelCons, 0, 4)
@@ -1103,12 +1103,12 @@ function printStatsCoreAuto(core)
 		monitor[MonitorNumber].write("Energie gespeichert: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF		")
 		monitor[MonitorNumber].setCursorPos(2, 15)
 		monitor[MonitorNumber].write("Energie IN-OUT: ")
-			if diffperenergycore() >= 0 then
+			if diffperenergycore(core) >= 0 then
 				monitor[MonitorNumber].setTextColor(colors.green)
 			else
 				monitor[MonitorNumber].setTextColor(colors.red)
 			end
-		monitor[MonitorNumber].write(input.formatNumberComma(math.floor(diffperenergycore())) .. " RF/t		")
+		monitor[MonitorNumber].write(input.formatNumberComma(math.floor(diffperenergycore(core))) .. " RF/t		")
 		
 		
     elseif lang == "en" then
