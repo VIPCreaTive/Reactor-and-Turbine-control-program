@@ -970,37 +970,17 @@ lastenergypertick = getEnergy()
 end
 
 --Prints Energy-Core-Stats
-function printStatsCoreAuto(turbine)
+function printStatsCoreAuto(cores)
     
 	for MonitorNumber=0,(amountMonitors -1) do
-	monitor[MonitorNumber].setBackgroundColor(backgroundColor)
-	monitor[MonitorNumber].setCursorPos(2, 1)
-	monitor[MonitorNumber].write("Test-Monitor-Nr: " .. (MonitorNumber))
+		monitor[MonitorNumber].setBackgroundColor(backgroundColor)
+		monitor[MonitorNumber].setCursorPos(2, 1)
+		monitor[MonitorNumber].write("Test-Monitor-Nr: " .. (MonitorNumber))
 	
-	--refresh current turbine
-    currStat = turbine
+		monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
+		monitor[MonitorNumber].setTextColor(tonumber(textColor))
 
-    --toggles turbine buttons if pressed (old button off, new button on)
-    if not page.buttonList["*" .. currStat + 1].active then
-        page:toggleButton("*" .. currStat + 1)
-    end
-    if currStat ~= lastStat then
-        if page.buttonList["*" .. lastStat + 1].active then
-            page:toggleButton("*" .. lastStat + 1)
-        end
-    end
-
-    --gets overall energy production
-  --  local rfGen = 0
- --   for i = 0, amountTurbines, 1 do
-   --     rfGen = rfGen + t[i].getEnergyProducedLastTick()
-  --  end
-
-    --prints the energy level (in %)
-    monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
-    monitor[MonitorNumber].setTextColor(tonumber(textColor))
-
-    monitor[MonitorNumber].setCursorPos(2, 2)
+		monitor[MonitorNumber].setCursorPos(2, 2)
     if lang == "de" then
 		energypertick = getEnergy()
 		formatenergypertick = energypertick
@@ -1048,111 +1028,8 @@ function printStatsCoreAuto(turbine)
     elseif lang == "en" then
         monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
     end
-
-    --Reactor status (on/off)
-    monitor[MonitorNumber].setCursorPos(2, 8)
-    if lang == "de" then
-        monitor[MonitorNumber].write("Reaktor: ")
-        if r.getActive() then
-            monitor[MonitorNumber].setTextColor(colors.green)
-            monitor[MonitorNumber].write("an ")
-        end
-        if not r.getActive() then
-            monitor[MonitorNumber].setTextColor(colors.red)
-            monitor[MonitorNumber].write("aus")
-        end
-    elseif lang == "en" then
-        monitor[MonitorNumber].write("Reactor: ")
-        if r.getActive() then
-            monitor[MonitorNumber].setTextColor(colors.green)
-            monitor[MonitorNumber].write("on ")
-        end
-        if not r.getActive() then
-            monitor[MonitorNumber].setTextColor(colors.red)
-            monitor[MonitorNumber].write("off")
-        end
-    end
-
-    --Prints all other informations (fuel consumption,steam,turbine amount,mode)
-    monitor[MonitorNumber].setTextColor(tonumber(textColor))
-    monitor[MonitorNumber].setCursorPos(2, 9)
-    local fuelCons = tostring(r.getFuelConsumedLastTick())
-    local fuelCons2 = string.sub(fuelCons, 0, 4)
-    local eff = math.floor(rfGen / r.getFuelConsumedLastTick())
-    if not r.getActive() then eff = 0 end
-
-    if lang == "de" then
-        monitor[MonitorNumber].write("Reaktor-Verbrauch: " .. fuelCons2 .. "mb/t     ")
-        monitor[MonitorNumber].setCursorPos(2, 10)
-        monitor[MonitorNumber].write("Steam: " .. (input.formatNumber(math.floor(r.getHotFluidProducedLastTick()))) .. "mb/t    ")
-        monitor[MonitorNumber].setCursorPos(2, 11)
-        monitor[MonitorNumber].write("Effizienz: " .. (input.formatNumber(eff)) .. " RF/mb       ")
-        monitor[MonitorNumber].setCursorPos(40, 2)
-        monitor[MonitorNumber].write("Turbinen: " .. (amountTurbines + 1) .. "  " .. "Energy-Cores: " .. (amountEnergy) .. "   ")
-        monitor[MonitorNumber].setCursorPos(2, 13)
-        monitor[MonitorNumber].write("-- Energy-Core " .. (core + 1) .. " --")
-    elseif lang == "en" then
-        monitor[MonitorNumber].write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
-        monitor[MonitorNumber].setCursorPos(2, 10)
-        monitor[MonitorNumber].write("Steam: " .. (input.formatNumberComma(math.floor(r.getHotFluidProducedLastTick()))) .. "mb/t    ")
-        monitor[MonitorNumber].setCursorPos(2, 11)
-        monitor[MonitorNumber].write("Efficiency: " .. (input.formatNumberComma(eff)) .. " RF/mb       ")
-        monitor[MonitorNumber].setCursorPos(40, 2)
-        monitor[MonitorNumber].write("Turbines: " .. (amountTurbines + 1) .. "  ")
-        monitor[MonitorNumber].setCursorPos(2, 13)
-        monitor[MonitorNumber].write("-- Energy-Core " .. (core + 1) .. " --")
-    end
-
-    --Currently selected turbine details
-
-    --coils
-    monitor[MonitorNumber].setCursorPos(2, 14)
-    monitor[MonitorNumber].write("Coils: ")
-
-    --if t[turbine].getInductorEngaged() then
-     --   monitor[MonitorNumber].setTextColor(colors.green)
-    --    if lang == "de" then
-    --        monitor[MonitorNumber].write("eingehaengt   ")
-    --    elseif lang == "en" then
-    --        monitor[MonitorNumber].write("engaged     ")
-    --    end
-    --end
-    --if t[turbine].getInductorEngaged() == false then
-     --   monitor[MonitorNumber].setTextColor(colors.red)
-     --   if lang == "de" then
-      --      monitor[MonitorNumber].write("ausgehaengt   ")
-      --  elseif lang == "en" then
-      --      monitor[MonitorNumber].write("disengaged")
-     --   end
-   -- end
-    monitor[MonitorNumber].setTextColor(tonumber(textColor))
-
-    --rotor speed/RF-production
-    monitor[MonitorNumber].setCursorPos(2, 15)
-    --if lang == "de" then
-    --    monitor[MonitorNumber].write("Rotor Geschwindigkeit: ")
-    --    monitor[MonitorNumber].write((input.formatNumber(math.floor(t[turbine].getRotorSpeed()))) .. " RPM   ")
-    --    monitor[MonitorNumber].setCursorPos(2, 15)
-    --    monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(t[turbine].getEnergyProducedLastTick()))) .. " RF/t           ")
-    --elseif lang == "en" then
-    --    monitor[MonitorNumber].write("Rotor Speed: ")
-    --    monitor[MonitorNumber].write((input.formatNumberComma(math.floor(t[turbine].getRotorSpeed()))) .. " RPM    ")
-    --    monitor[MonitorNumber].setCursorPos(2, 15)
-    --    monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(t[turbine].getEnergyProducedLastTick()))) .. " RF/t           ")
-    --end
-
-    --Internal buffer of the turbine
-    monitor[MonitorNumber].setCursorPos(2, 16)
-    --if lang == "de" then
-    --    monitor[MonitorNumber].write("Interne Energie: ")
-    --    monitor[MonitorNumber].write(input.formatNumber(math.floor(getTurbineEnergy(turbine))) .. " RF          ")
-    --elseif lang == "en" then
-    --    monitor[MonitorNumber].write("Internal Energy: ")
-    --    monitor[MonitorNumber].write(input.formatNumberComma(math.floor(getTurbineEnergy(turbine))) .. " RF          ")
-    --end
-
-    --prints the current program version
-    monitor[MonitorNumber].setCursorPos(2, 25)
+	
+	monitor[MonitorNumber].setCursorPos(2, 25)
     monitor[MonitorNumber].write("Version " .. version)
 
     --refreshes the last turbine id
