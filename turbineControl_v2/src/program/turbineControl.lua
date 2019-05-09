@@ -700,7 +700,7 @@ function createAllButtons()
 			else y = y + 2
             end
         end --if mode
-    end --for
+    end --for 
 
 	--Energycore buttons		
 	for i = 0, (amountEnergy -1 ), 1 do
