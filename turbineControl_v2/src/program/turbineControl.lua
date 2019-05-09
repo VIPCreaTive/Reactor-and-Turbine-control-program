@@ -240,7 +240,7 @@ end
 function diffperenergycore(core)
 	local energypertick = v[core].getEnergyStored()
 	local lastenergypertick = getEnergy()
-	diffperenergycore = (energypertick - lastenergypertick) / 20
+	Diffpercore = (energypertick - lastenergypertick) / 20
 return Diffpercore
 end
 
