@@ -675,7 +675,7 @@ function createAllButtons()
     local y = 4
 
     --Turbine buttons
-    for i = 0, 3, 1 do
+    for i = 0, amountTurbines, 1 do
         if overallMode == "auto" then
             if i <= 7 then
                 page:add("#" .. (i + 1), function() printStatsAuto(i) end, 40, y, 40 + 5, y)
