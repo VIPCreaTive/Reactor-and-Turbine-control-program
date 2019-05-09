@@ -678,9 +678,9 @@ function createAllButtons()
     for i = 0, amountTurbines, 1 do
         if overallMode == "auto" then
             if i <= 7 then
-                page:add("#" .. (i + 1), function() printStatsAuto(i) end, 40, y, 40 + 5, y)
+                page:add("#" .. (i + 1), function() printStatsAuto(i) end, x1, y, x1 + 5, y)
             elseif (i > 7 and i <= 15) then
-                page:add("#" .. (i + 1), function() printStatsAuto(i) end, 47, y, 47 + 5, y)
+                page:add("#" .. (i + 1), function() printStatsAuto(i) end, x2, y, x2 + 5, y)
             end
 		
         elseif overallMode == "manual" then
