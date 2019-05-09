@@ -236,6 +236,14 @@ function getEnergyPer()
     return enPer
 end
 
+--Gets the Differenz Power IN-Out per Core
+function diffperenergycore(core)
+	local energypertick = v[core].getEnergyStored()
+	local lastenergypertick = getEnergy()
+	diffperenergycore = (energypertick - lastenergypertick) / 20
+return diffperenergycore
+end
+
 --Returns the current energy fill status of a turbine
 function getTurbineEnergy(turbine)
     return t[turbine].getEnergyStored()
@@ -823,12 +831,12 @@ function printStatsAuto(turbine)
     if lang == "de" then
 		energypertick = getEnergy()
 		formatenergypertick = energypertick
-		monitor[MonitorNumber].write("Energie: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF ")
+		monitor[MonitorNumber].write("Gesamtenergie: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF ")
 		
     elseif lang == "en" then
         energypertick = getEnergy()
 		formatenergypertick = energypertick
-		monitor[MonitorNumber].write("Energy: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF ")
+		monitor[MonitorNumber].write("Total-Energy: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF ")
     end
 
     --prints the energy bar
@@ -994,7 +1002,7 @@ function printStatsCoreAuto(core)
 	for MonitorNumber=0,(amountMonitors -1) do
 		monitor[MonitorNumber].setBackgroundColor(backgroundColor)
 		monitor[MonitorNumber].setCursorPos(2, 1)
-		monitor[MonitorNumber].write("Test-Monitor-Nr: " .. (core))
+		monitor[MonitorNumber].write("Monitor-Nr: " .. (MonitorNumber))
 	
 	--refresh current turbine
     currStat = core
@@ -1012,10 +1020,6 @@ function printStatsCoreAuto(core)
         end
     end
 
-
-
-    --gets overall energy production
-	
 		monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
 		monitor[MonitorNumber].setTextColor(tonumber(textColor))
 
@@ -1023,12 +1027,12 @@ function printStatsCoreAuto(core)
     if lang == "de" then
 		energypertick = getEnergy()
 		formatenergypertick = energypertick
-		monitor[MonitorNumber].write("Energie: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF ")
+		monitor[MonitorNumber].write("Energie: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF 	")
 		
     elseif lang == "en" then
         energypertick = getEnergy()
 		formatenergypertick = energypertick
-		monitor[MonitorNumber].write("Energy: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF ")
+		monitor[MonitorNumber].write("Energy: " .. getEnergyPer() .. "%  ".." "..(input.formatNumber(math.floor(formatenergypertick))) .. " RF 	")
     end
 
     --prints the energy bar
@@ -1045,8 +1049,8 @@ function printStatsCoreAuto(core)
 
     --prints the overall energy production
     monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
-
     monitor[MonitorNumber].setCursorPos(2, 4)
+	
     if lang == "de" then
         --Berechne Energy-Core-Diff In-Out
 		diffenergycore = (energypertick - lastenergypertick) / 20		
@@ -1056,25 +1060,36 @@ function printStatsCoreAuto(core)
 			else
 				monitor[MonitorNumber].setTextColor(colors.red)
 			end
-		monitor[MonitorNumber].write(input.formatNumber(math.floor(diffenergycore)) .. " RF/t      ")	
-		
-		--lastenergypertick = getEnergy()
+		monitor[MonitorNumber].write(input.formatNumber(math.floor(diffenergycore)) .. " RF/t      		")	
 		
 		monitor[MonitorNumber].setTextColor(textColor)
-		monitor[MonitorNumber].setCursorPos(2, 6)		
+		monitor[MonitorNumber].setCursorPos(2, 6)
+		--Energiespeicher Stats
+		monitor[MonitorNumber].setCursorPos(2, 13)
+        monitor[MonitorNumber].write("-- Energiespeicher " .. (core + 1) .. " --")
+		monitor[MonitorNumber].setCursorPos(2, 14)
+		monitor[MonitorNumber].write("Energie gespeichert: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF		")
+		monitor[MonitorNumber].setCursorPos(2, 15)
+		monitor[MonitorNumber].write("Energie IN-OUT: ")
+			if diffperenergycore(core) >= 0 then
+				monitor[MonitorNumber].setTextColor(colors.green)
+			else
+				monitor[MonitorNumber].setTextColor(colors.red)
+			end
+		monitor[MonitorNumber].write(input.formatNumberComma(math.floor(diffperenergycore(core)))) .. " RF/t		")
 		
-		--kann weg, keine Turbine mehr
-		--monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      ")
 		
     elseif lang == "en" then
-        monitor[MonitorNumber].write("Energy-Storage: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF      ")
+        monitor[MonitorNumber].write("Energy-Storage: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      		")
+		--Energycore Stats
+		monitor[MonitorNumber].setCursorPos(2, 13)
+        monitor[MonitorNumber].write("-- Energycore " .. (core + 1) .. " --")
+		monitor[MonitorNumber].setCursorPos(2, 14)
+		monitor[MonitorNumber].write("Energy stored: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF		")
     end
 	
 	monitor[MonitorNumber].setCursorPos(2, 25)
     monitor[MonitorNumber].write("Version " .. version)
-	
-	monitor[MonitorNumber].setCursorPos(2, 6)
-	monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF/t      ")
 	
     --refreshes the last turbine id
     lastStat = core
