@@ -686,7 +686,7 @@ function createAllButtons()
 			--CREATES BUTTONS FOR ENERGY CORE
 			for i = 0, (amountEnergy -1 ), 1 do
 				if i <= 7 then
-				page:add("+" .. (i + 1), function() printStatsCoreAuto(i) end, x2, y, x2 + 5, y)
+				page:add("+" .. (i + 1), function() printStatsCoreAuto(i) end, x3, y, x3 + 5, y)
 			elseif (i > 7 and i <= 15) then
 				page:add("+" .. (i + 1), function() run("/reactor-turbine-program/program/test") end, x4, y, x4 + 5, y)
 			--elseif (i > 15 and i <= 23) then
@@ -984,8 +984,6 @@ end
 --Prints Energy-Core-Stats
 function printStatsCoreAuto(turbine)
     
-	
-	
 	for MonitorNumber=0,(amountMonitors -1) do
 	monitor[MonitorNumber].setBackgroundColor(backgroundColor)
 	monitor[MonitorNumber].setCursorPos(2, 1)
