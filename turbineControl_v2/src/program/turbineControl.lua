@@ -810,10 +810,10 @@ function printStatsAuto(turbine)
         page:toggleButton("#" .. currStat + 1)
     end
     if currStat ~= lastStat then
-        if page.buttonList["#" .. lastStat + 1].active then
-            page:toggleButton("#" .. lastStat + 1)
-		elseif page.buttonList["*" .. lastStat + 1].active then
-			page:toggleButton("*" .. lastStat + 1)
+        if page.buttonList["*" .. lastStat + 1].active then
+            page:toggleButton("*" .. lastStat + 1)
+		elseif page.buttonList["#" .. lastStat + 1].active then
+			page:toggleButton("#" .. lastStat + 1)
         end
     end
 
