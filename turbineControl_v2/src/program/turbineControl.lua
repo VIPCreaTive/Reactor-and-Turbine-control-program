@@ -1023,7 +1023,9 @@ function printStatsCoreAuto(cores)
 		
 		monitor[MonitorNumber].setTextColor(textColor)
 		monitor[MonitorNumber].setCursorPos(2, 6)		
-		monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      ")
+		
+		--kann weg, keine Turbine mehr
+		--monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      ")
 		
     elseif lang == "en" then
         monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
