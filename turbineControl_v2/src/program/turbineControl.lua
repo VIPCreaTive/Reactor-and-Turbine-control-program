@@ -676,11 +676,11 @@ function createAllButtons()
 	local y2 = 4
 
     --Turbine buttons
-    for i = 1, amountTurbines, 1 do
+    for 0 = 1, amountTurbines, 1 do
 		if i <= 7 then
-			page:add("#" .. (i), function() printStatsAuto(i) end, x1, y, x1 + 5, y)
+			page:add("#" .. (i + 1), function() printStatsAuto(i) end, x1, y, x1 + 5, y)
 		elseif (i > 7 and i <= 15) then
-			page:add("#" .. (i), function() printStatsAuto(i) end, x2, y, x2 + 5, y)
+			page:add("#" .. (i + 1), function() printStatsAuto(i) end, x2, y, x2 + 5, y)
 		end --if amount
 			if (i == 7 or i == 15 or i == 23) then 
 				y = 4
@@ -689,11 +689,11 @@ function createAllButtons()
 	end --for
 	
 	--Energycore buttons		
-	for i = 1, (amountEnergy - 1), 1 do
+	for i = 0, (amountEnergy - 1), 1 do
 		if i <= 7 then
-			page:add("*" .. (i), function() printStatsAuto(i) end, x3, y2, x3 + 5, y2)
+			page:add("*" .. (i + 1), function() printStatsAuto(i) end, x3, y2, x3 + 5, y2)
 		elseif (i > 7 and i <= 15) then
-			page:add("*" .. (i), function() printStatsAuto(i) end, x4, y2, x4 + 5, y2)
+			page:add("*" .. (i + 1), function() printStatsAuto(i) end, x4, y2, x4 + 5, y2)
 		end --if amount
 			if (i == 7 or i == 15 or i == 23) then 
 				y2 = 4
