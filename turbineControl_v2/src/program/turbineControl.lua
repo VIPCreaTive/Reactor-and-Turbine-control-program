@@ -1114,7 +1114,7 @@ function printStatsCoreAuto(turbine)
         monitor[MonitorNumber].setCursorPos(40, 2)
         monitor[MonitorNumber].write("Turbines: " .. (amountTurbines + 1) .. "  ")
         monitor[MonitorNumber].setCursorPos(2, 13)
-        monitor[MonitorNumber].write("-- Turbine " .. (turbine + 1) .. " --")
+        monitor[MonitorNumber].write("-- Energy-Core " .. (turbine + 1) .. " --")
     end
 
     --Currently selected turbine details
