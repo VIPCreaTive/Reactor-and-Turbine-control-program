@@ -994,9 +994,10 @@ function printStatsCoreAuto(core)
 	--refresh current turbine
     currStat = core
 	
-	monitor[MonitorNumber].setCursorPos(2, 24)
+	monitor[MonitorNumber].setCursorPos(2, 20)
 	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
-	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
+	monitor[MonitorNumber].setCursorPos(2, 21)
+	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
 	if not page.buttonList["*" .. currStat + 1].active then
@@ -1073,7 +1074,7 @@ function printStatsCoreAuto(core)
     monitor[MonitorNumber].write("Version " .. version)
 
     --refreshes the last turbine id
-    lastStat = cores
+    lastStat = core
 	
 	monitor[MonitorNumber].setCursorPos(2, 6)
 	monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF/t      ")
