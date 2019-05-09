@@ -693,12 +693,9 @@ function createAllButtons()
 			--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
 		--elseif i > 23 then
 			--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x4, y, x4 + 5, y)
-		end
-			if (i == 7 or i == 15 or i == 23) then y = 4
-				else y = y + 2
-			end
-		end
-		end
+		end --if
+		end --for
+		
         elseif overallMode == "manual" then
             if i <= 7 then
                 page:add("#" .. (i + 1), function() printStatsMan(i) end, x1, y, x1 + 5, y)
@@ -709,6 +706,7 @@ function createAllButtons()
             elseif i > 23 then
                 page:add("#" .. (i + 1), function() printStatsMan(i) end, x4, y, x4 + 5, y)
             end
+
             if (i == 7 or i == 15 or i == 23) then y = 4
             else y = y + 2
             end
