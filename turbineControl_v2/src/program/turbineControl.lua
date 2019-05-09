@@ -970,29 +970,29 @@ lastenergypertick = getEnergy()
 end
 
 --Prints Energy-Core-Stats
-function printStatsCoreAuto(cores)
+function printStatsCoreAuto(core)
     
 	for MonitorNumber=0,(amountMonitors -1) do
 		monitor[MonitorNumber].setBackgroundColor(backgroundColor)
 		monitor[MonitorNumber].setCursorPos(2, 1)
-		monitor[MonitorNumber].write("Test-Monitor-Nr: " .. (cores))
+		monitor[MonitorNumber].write("Test-Monitor-Nr: " .. (core))
 	
 	--refresh current turbine
-    currStat = cores
+    currStat = core
 	
 	monitor[MonitorNumber].setCursorPos(2, 24)
 	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
 	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
-    if not page.buttonList["*" .. CurrStat + 1].active then
-        page:toggleButton("*" .. currStat + 1)
+    if not page.buttonList["#" .. CurrStat + 1].active then
+        page:toggleButton("#" .. currStat + 1)
     end
     if currStat ~= lastStat then
         if page.buttonList["#" .. lastStat + 1].active then
             page:toggleButton("#" .. lastStat + 1)
-		elseif page.buttonList["*" .. lastStat + 1].active then
-			page:toggleButton("*" .. lastStat + 1)
+		elseif page.buttonList["#" .. lastStat + 1].active then
+			page:toggleButton("#" .. lastStat + 1)
         end
     end
 
