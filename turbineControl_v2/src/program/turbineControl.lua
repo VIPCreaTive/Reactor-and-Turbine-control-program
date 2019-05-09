@@ -981,12 +981,12 @@ function printStatsCoreAuto(turbine)
     currStat = turbine
 
     --toggles turbine buttons if pressed (old button off, new button on)
-    if not page.buttonList["#" .. currStat + 1].active then
-        page:toggleButton("#" .. currStat + 1)
+    if not page.buttonList["*" .. currStat + 1].active then
+        page:toggleButton("*" .. currStat + 1)
     end
     if currStat ~= lastStat then
-        if page.buttonList["#" .. lastStat + 1].active then
-            page:toggleButton("#" .. lastStat + 1)
+        if page.buttonList["*" .. lastStat + 1].active then
+            page:toggleButton("*" .. lastStat + 1)
         end
     end
 
