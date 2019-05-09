@@ -245,7 +245,6 @@ end
 --Gets the Differenz Power IN-Out per Core
 function diffperenergycore(core)
 	local energynow = v[core].getEnergyStored()
-	local lastenergystoredpercore = getEnergy()
 	Diffpercore = (energynow - lastenergystoredpercore) / 20
 	return Diffpercore
 end
