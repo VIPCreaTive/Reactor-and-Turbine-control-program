@@ -239,8 +239,7 @@ end
 
 --Gets the last energy stored per core
 function energypercore(core)
-local EnergyStoredCore = 0
-	EnergystoredCore = math.floor(EnergystoredCore + v[core].getEnergyStored())
+	EnergystoredCore = v[core].getEnergyStored()
 	return EnergystoredCore
 end
 
