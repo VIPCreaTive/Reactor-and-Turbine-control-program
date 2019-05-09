@@ -789,14 +789,14 @@ function printStatsAuto(turbine)
     currStat = turbine
 
     --toggles turbine buttons if pressed (old button off, new button on)
-    if not page.buttonList["#" .. currStat + 1].active then
-        page:toggleButton("#" .. currStat + 1)
-    end
-    if currStat ~= lastStat then
-        if page.buttonList["#" .. lastStat + 1].active then
-            page:toggleButton("#" .. lastStat + 1)
-        end
-    end
+    --if not page.buttonList["#" .. currStat + 1].active then
+    --    page:toggleButton("#" .. currStat + 1)
+    --end
+    --if currStat ~= lastStat then
+    --    if page.buttonList["#" .. lastStat + 1].active then
+    --       page:toggleButton("#" .. lastStat + 1)
+    --    end
+    --end
 
     --gets overall energy production
     local rfGen = 0
@@ -1054,7 +1054,7 @@ function printStatsCoreAuto(core)
 		--monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      ")
 		
     elseif lang == "en" then
-        monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
+        monitor[MonitorNumber].write("Energy-Storage: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF      ")
     end
 	
 	monitor[MonitorNumber].setCursorPos(2, 25)
