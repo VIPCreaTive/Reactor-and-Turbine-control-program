@@ -851,7 +851,7 @@ function printStatsAuto(turbine)
 		
 		monitor[MonitorNumber].setTextColor(textColor)
 		monitor[MonitorNumber].setCursorPos(2, 6)		
-		monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      Stat:".. currStat .. "")
+		monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      ")
 		
     elseif lang == "en" then
         monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
@@ -979,10 +979,18 @@ function printStatsCoreAuto(cores)
 	
 	--refresh current turbine
     currStat = cores
-
+	
+	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
+	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
+	
     --toggles turbine buttons if pressed (old button off, new button on)
---    if not page.buttonList["*" .. currStat + 1].active then
---       page:toggleButton("*" .. currStat + 1)
+	for x=0 , amountTurbines, 1 do
+		if not page.buttonList["#" .. x.active then
+		else
+			page:toggleButton("#" .. x)
+		end
+	
+--       page:toggleButton("#" .. currStat + 1)
 --    end
 --    if currStat ~= lastStat then
 --        if page.buttonList["*" .. lastStat + 1].active then
