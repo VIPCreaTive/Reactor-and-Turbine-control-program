@@ -1091,7 +1091,7 @@ function printStatsCoreAuto(core)
 		--Berechne Differenz pro Core
 		monitor[MonitorNumber].write("Energie IN-OUT: ")
 			Diffpercore = (energypercore(core) - lastenergystoredpercore) / 20
-				if Diffpercore) >= 0 then
+				if Diffpercore >= 0 then
 					monitor[MonitorNumber].setTextColor(colors.green)
 				else
 					monitor[MonitorNumber].setTextColor(colors.red)
