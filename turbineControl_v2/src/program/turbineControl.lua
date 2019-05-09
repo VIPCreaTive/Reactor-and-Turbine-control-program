@@ -851,7 +851,7 @@ function printStatsAuto(turbine)
 		
 		monitor[MonitorNumber].setTextColor(textColor)
 		monitor[MonitorNumber].setCursorPos(2, 6)		
-		monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      ")
+		monitor[MonitorNumber].write("RF-Produktion: " .. (input.formatNumber(math.floor(rfGen))) .. " RF/t      Stat:".. currStat .. "")
 		
     elseif lang == "en" then
         monitor[MonitorNumber].write("RF-Production: " .. (input.formatNumberComma(math.floor(rfGen))) .. " RF/t      ")
