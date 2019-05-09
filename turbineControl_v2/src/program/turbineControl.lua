@@ -680,7 +680,7 @@ function createAllButtons()
         if overallMode == "auto" then
             if i <= 7 then
                 page:add("#" .. (i), function() printStatsAuto(i) end, x1, y, x1 + 5, y)
-				page:add("#" .. (i+1), function() printStatsAuto(i+1) end, x1, y+10, x1 + 5, y+10)
+				page:add("#" .. (i + 1), function() printStatsAuto(i + 1) end, x1, y + 10, x1 + 5, y + 10)
             elseif (i > 7 and i <= 15) then
                 page:add("#" .. (i + 1), function() printStatsAuto(i) end, x2, y, x1 + 5, y)
             end -- if-amount
