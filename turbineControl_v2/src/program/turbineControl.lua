@@ -860,10 +860,10 @@ function printStatsAuto(turbine)
     --prints the overall energy production
     monitor[MonitorNumber].setBackgroundColor(tonumber(backgroundColor))
 
-    monitor[MonitorNumber].setCursorPos(2, 4)
     if lang == "de" then
         --Berechne Energy-Core-Diff In-Out
-		diffenergycore = (energypertick - lastenergypertick) / 20		
+		diffenergycore = (energypertick - lastenergypertick) / 20	
+		monitor[MonitorNumber].setCursorPos(2, 4)
 		monitor[MonitorNumber].write("Energy-Core-Diff: ")	
 			if diffenergycore >= 0 then
 				monitor[MonitorNumber].setTextColor(colors.green)
@@ -1075,7 +1075,8 @@ function printStatsCoreAuto(core)
         monitor[MonitorNumber].write("Effizienz: " .. (input.formatNumber(eff)) .. " RF/mb       ")
 		
 		--Berechne Energy-Core-Diff In-Out
-		diffenergycore = (energypertick - lastenergypertick) / 20		
+		diffenergycore = (energypertick - lastenergypertick) / 20
+		monitor[MonitorNumber].setCursorPos(2, 4)		
 		monitor[MonitorNumber].write("Energy-Core-Diff: ")	
 			if diffenergycore >= 0 then
 				monitor[MonitorNumber].setTextColor(colors.green)
