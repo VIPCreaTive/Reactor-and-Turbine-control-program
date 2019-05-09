@@ -1086,18 +1086,18 @@ function printStatsCoreAuto(core)
 		monitor[MonitorNumber].setCursorPos(2, 13)
         monitor[MonitorNumber].write("-- Energiespeicher " .. (core + 1) .. " --")
 		monitor[MonitorNumber].setCursorPos(2, 14)
-		monitor[MonitorNumber].write("Energie gespeichert: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF		")
+		monitor[MonitorNumber].write("Energie gespeichert: " .. (input.formatNumberComma(math.floor(v[core].getEnergyStored()))) .. " RF			")
 		monitor[MonitorNumber].setCursorPos(2, 15)
 		
 		--Berechne Differenz pro Core
 		monitor[MonitorNumber].write("Energie IN-OUT: ")
-			--Diffpercore = (energypercore(core) - lastenergystoredpercore) / 20
-			--	if Diffpercore >= 0 then
-			--		monitor[MonitorNumber].setTextColor(colors.green)
-			--	else
-			--		monitor[MonitorNumber].setTextColor(colors.red)
-			--	end
-		--monitor[MonitorNumber].write(input.formatNumberComma(math.floor(Diffpercore)) .. " RF/t		")
+			Diffpercore = (energypercore(core) - lastenergystoredpercore) / 20
+				if Diffpercore >= 0 then
+					monitor[MonitorNumber].setTextColor(colors.green)
+				else
+					monitor[MonitorNumber].setTextColor(colors.red)
+				end
+		monitor[MonitorNumber].write(input.formatNumber(math.floor(Diffpercore)) .. " RF/t			")
 		monitor[MonitorNumber].setTextColor(textColor)
 		
 		monitor[MonitorNumber].setCursorPos(2, 16)
