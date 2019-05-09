@@ -980,12 +980,14 @@ function printStatsCoreAuto(cores)
 	--refresh current turbine
     currStat = cores
 	
+	monitor[MonitorNumber].setCursorPos(2, 24)
 	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
 	monitor[MonitorNumber].write("lastStat: ".. lastStat .. "")
 	
     --toggles turbine buttons if pressed (old button off, new button on)
 	for x=0 , amountTurbines, 1 do
 		if not page.buttonList["#" .. x].active then
+		monitor[MonitorNumber].write("#" .. x)
 		else
 			page:toggleButton("#" .. x)
 		end
