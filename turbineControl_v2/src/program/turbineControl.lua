@@ -685,9 +685,9 @@ function createAllButtons()
 		
         elseif overallMode == "manual" then
             if i <= 7 then
-                page:add("#" .. (i + 1), function() printStatsMan(i) end, x1, y, x1 + 5, y)
+                --page:add("#" .. (i + 1), function() printStatsMan(i) end, x1, y, x1 + 5, y)
             elseif (i > 7 and i <= 15) then
-                page:add("#" .. (i + 1), function() printStatsMan(i) end, x2, y, x2 + 5, y)
+                --page:add("#" .. (i + 1), function() printStatsMan(i) end, x2, y, x2 + 5, y)
             elseif (i > 15 and i <= 23) then
                 page:add("#" .. (i + 1), function() printStatsMan(i) end, x3, y, x3 + 5, y)
             elseif i > 23 then
@@ -703,9 +703,9 @@ function createAllButtons()
 	--Energycore buttons		
 	for i = 0, (amountEnergy -1 ), 1 do
 		if i <= 7 then
-			--page:add("+" .. (i + 1), function() printStatsAuto(i) end, 54, y, 54 + 5, y)
+			page:add("+" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
 		elseif (i > 7 and i <= 15) then
-			--page:add("+" .. (i + 1), function() printStatsAuto(i) end, 54, y, 54 + 5, y)
+			page:add("+" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
 		--elseif (i > 15 and i <= 23) then
 			--page:add("#" .. (i + 1), function() printStatsAuto(i) end, x3, y, x3 + 5, y)
 		--elseif i > 23 then
