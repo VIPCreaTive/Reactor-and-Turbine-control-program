@@ -1102,11 +1102,6 @@ function printStatsCoreAuto(core)
 				end
 		monitor[MonitorNumber].write(input.formatNumber(math.floor(Diffpercore)) .. " RF/t				 ")
 		monitor[MonitorNumber].setTextColor(textColor)
-		
-		monitor[MonitorNumber].setCursorPos(2, 16)
-		monitor[MonitorNumber].write(input.formatNumber(math.floor(energypercore(core))))
-		monitor[MonitorNumber].setCursorPos(2, 17)
-		monitor[MonitorNumber].write(input.formatNumber(math.floor(lastenergystoredpercore)))
 			
     elseif lang == "en" then
         monitor[MonitorNumber].write("Fuel Consumption: " .. fuelCons2 .. "mb/t     ")
@@ -1148,11 +1143,7 @@ function printStatsCoreAuto(core)
 	
     --refreshes the last turbine id
     lastStat = core
-	
-	monitor[MonitorNumber].setCursorPos(2, 20)
-	monitor[MonitorNumber].write("CurrStat: ".. currStat .. "")
-	monitor[MonitorNumber].setCursorPos(2, 21)
-	monitor[MonitorNumber].write("LastStat: ".. lastStat .. "")
+
 end
 lastenergypertick = getEnergy()
 lastenergystoredpercore = energypercore(core)
