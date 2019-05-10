@@ -281,7 +281,7 @@ function initPeripherals()
 			monitor[amountMonitors] = peripheral.wrap(peripheralList[i])
 			amountMonitors = amountMonitors + 1
 			--Capacitorbank / Energycell / Energy Core
-		elseif peripheral.getType(peripheralList[i]) == "draconic_rf_storage" or "tile_thermalexpansion_cell_resonant_name"then
+		elseif peripheral.getType(peripheralList[i]) == "draconic_rf_storage" or "tile_blockcapacitorbank_name"then
 			v[amountEnergy] = peripheral.wrap(peripheralList[i])
 			amountEnergy = amountEnergy + 1
 		else
